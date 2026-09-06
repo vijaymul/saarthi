@@ -20,7 +20,7 @@ This document details the hour-by-hour deployment strategy for porting the Pytho
 
 ### Phase 3: Sensor Fusion & State Machine (Hours 12–18)
 - Port the deterministic 4-state alert machine (`CLEAR`, `CAUTION`, `HAZARD`, `RECOVERING`).
-- Implement the 5-window grumpy recovery rule and instant relapse logic.
+- Implement the 5-window recovery hysteresis rule and instant relapse logic.
 - Integrate on-device LLM narration layer for conversational speech output.
 - **Deliverable**: End-to-end hazard verdict state machine running locally on device.
 

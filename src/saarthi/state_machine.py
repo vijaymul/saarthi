@@ -1,7 +1,7 @@
 """
 Deterministic Alert State Machine for Saarthi.
 Controls safety transitions: CLEAR, CAUTION, HAZARD, RECOVERING.
-Enforces the grumpy recovery rule (5 consecutive clean windows) and instant relapse.
+Enforces the 5-window recovery hysteresis rule (5 consecutive clean windows) and instant relapse.
 """
 
 from typing import List, Optional

@@ -16,10 +16,21 @@
 | **What?** | **Saarthi** detects physical hazards (vehicles, pedestrians, curb drops, poles) in the walking path of visually impaired users. |
 | **Why?** | Cloud solutions (*Be My Eyes, Seeing AI*) fail without internet and have high latency. Expensive wearables (*OrCam*) cost $4,000+. Saarthi runs **100% on-device** on accessible smartphones. |
 | **How?** | Computer vision + motion vectors + **6 deterministic consistency checks** + 4-state aviation safety machine. |
-| **Does it work?** | **Yes.** Working Python PoC with **14/14 passing automated tests** (0.014s), synthetic trace simulator, and mobile interactive prototype. |
+| **Does it work?** | **Yes.** Working Python PoC with **14/14 passing automated tests** (0.012s), synthetic trace simulator, and mobile interactive prototype. |
 | **Can I run it?** | `python examples/run_demo.py` & `python -m unittest discover tests -v` |
 
-📺 **[Watch the 2:30 Product Video Demo on YouTube](https://youtu.be/MLpM2aX246M?si=EFiSEgVJ4zKq2G_P)**  
+---
+
+## 📋 PoC Evidence Summary
+
+- ✅ **14/14 automated unit & integration tests passing** (Python `unittest`, 0.012s execution)
+- ✅ **Deterministic 4-State Alert Engine** with **5-window recovery hysteresis**
+- ✅ **6 Independent Sensing-Consistency Checks** (Taxonomy, Distance, Trajectory, Corridor, Persistence, Ambient)
+- ✅ **Multi-Frame Persistence Filter** eliminating single-frame detector false alarms
+- ✅ **Offline-First Architecture** with zero cloud round-trips
+- ✅ **Live Mobile Prototype & 2:30 Product Walkthrough** available
+
+📺 **[Watch the Product Video Demo on YouTube](https://youtu.be/MLpM2aX246M?si=EFiSEgVJ4zKq2G_P)**  
 📱 **[Launch the Live Mobile Web Prototype](https://saarthi-swart.vercel.app)**
 
 ---
@@ -45,24 +56,24 @@ Spoken Guidance (Context Only) & Earcon Tone
 ```
 
 ### State Machine Lifecycle
-The safety engine enforces a strict, grumpy recovery cycle:
+The safety engine enforces a strict **recovery hysteresis** to prevent rapid `HAZARD ↔ CLEAR` oscillation:
 
 $$\text{CLEAR} \longrightarrow \text{CAUTION} \longrightarrow \text{HAZARD} \overset{\text{Clean Frame}}{\longrightarrow} \text{RECOVERING (5 Windows)} \longrightarrow \text{CLEAR}$$
 
-- **No Instant Clears**: Once a `HAZARD` is triggered, the system requires **5 consecutive clean sensing windows** to return to `CLEAR`.
-- **Instant Relapse**: Any new obstacle during `RECOVERING` immediately drops back to `HAZARD` and resets the counter to 0.
+- **No Instant Clears**: Once a `HAZARD` is triggered, the system requires **5 consecutive clean sensing windows (hysteresis)** to return to `CLEAR`.
+- **Instant Relapse**: Any new obstacle during `RECOVERING` immediately drops back to `HAZARD` and resets the recovery window counter to 0.
 
 ---
 
 ## 🧠 Critical Architecture: Safety Layer vs. LLM
 
-> 🛡️ **The LLM never makes safety decisions.**
+> 🛡️ **"Saarthi does not ask an LLM whether an obstacle is dangerous. The deterministic safety layer makes that decision; the language model only converts the resulting state into contextual guidance."**
 
 ```
 ┌────────────────────────────────────────────────────────┐
 │             DETERMINISTIC SAFETY LAYER                 │
 │  - 6 Mathematical Consistency Checks                   │
-│  - 4-State Transition Logic                            │
+│  - 4-State Transition Logic with Hysteresis            │
 │  - 100% ALERT & SAFETY AUTHORITY                       │
 └──────────────────────────┬─────────────────────────────┘
                            │ (Emits Verified Verdict)
@@ -84,9 +95,9 @@ This aviation-safety architecture ensures hallucinations or LLM latency **never*
 | Feature / Metric | Status | Technical Details |
 | :--- | :---: | :--- |
 | **Multi-Sensor Fusion (6 Checks)** | **Implemented** | Taxonomy, Safe-Stop Distance, Trajectory, Walking Corridor, Temporal Persistence, Ambient Context. |
-| **Deterministic State Machine** | **Implemented** | 4 states (`CLEAR`, `CAUTION`, `HAZARD`, `RECOVERING`) with grumpy 5-window recovery. |
+| **Deterministic State Machine** | **Implemented** | 4 states (`CLEAR`, `CAUTION`, `HAZARD`, `RECOVERING`) with 5-window recovery hysteresis. |
 | **False-Positive Suppression** | **Measured** | Single-frame detector flickers suppressed (1/10 frames < 60% threshold = rejected). |
-| **Test Suite Execution** | **Measured** | **14 / 14 unit & integration tests passed** in **0.014s** (Python standard library `unittest`). |
+| **Test Suite Execution** | **Measured** | **14 / 14 unit & integration tests passed** in **0.012s** (Python standard library `unittest`). |
 | **Interactive Mobile Prototype** | **Implemented** | Mobile-first HUD, 4 interactive scenarios, Web Audio frequency earcons, speech synthesis. |
 | **NPU Inference Latency** | **Target (Phase 2)** | Target **~16.2 ms** INT8 quantized YOLO model on Qualcomm Snapdragon Hexagon NPU. |
 | **Real-time CameraX Stream** | **Target (Phase 2)** | Target **60 FPS** camera analysis on native Android iQOO 12 deployment. |
@@ -115,7 +126,7 @@ python -m unittest discover tests -v
 | `test_checks.py` | `test_ambient_check_lighting_and_audio` | Gain calibrations for low light & street noise | **PASS** |
 | `test_state_machine.py` | `test_clean_stay_clear` | Clean trace stays in CLEAR continuously | **PASS** |
 | `test_state_machine.py` | `test_hazard_trigger_and_no_direct_clear` | HAZARD must enter RECOVERING first | **PASS** |
-| `test_state_machine.py` | `test_grumpy_recovery_requires_five_clean_windows` | HAZARD requires 5 consecutive clean windows | **PASS** |
+| `test_state_machine.py` | `test_recovery_hysteresis_requires_five_clean_windows` | HAZARD requires 5 consecutive clean windows | **PASS** |
 | `test_state_machine.py` | `test_relapse_during_recovery` | Relapse resets recovery count and drops to HAZARD | **PASS** |
 | `test_integration.py` | `test_clean_trace_end_to_end` | Honest walking trace produces clean states | **PASS** |
 | `test_integration.py` | `test_hazard_scenario_full_lifecycle` | End-to-end multi-hazard lifecycle verification | **PASS** |

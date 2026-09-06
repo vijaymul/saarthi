@@ -22,7 +22,7 @@
 | `test_checks.py` | `test_ambient_check_lighting_and_audio` | Gain calibrations for low light & noise | **PASSED** |
 | `test_state_machine.py` | `test_clean_stay_clear` | Clean trace stays in CLEAR continuously | **PASSED** |
 | `test_state_machine.py` | `test_hazard_trigger_and_no_direct_clear` | HAZARD must enter RECOVERING first | **PASSED** |
-| `test_state_machine.py` | `test_grumpy_recovery_requires_five_clean_windows` | HAZARD requires 5 consecutive clean windows | **PASSED** |
+| `test_state_machine.py` | `test_recovery_hysteresis_requires_five_clean_windows` | HAZARD requires 5 consecutive clean windows | **PASSED** |
 | `test_state_machine.py` | `test_relapse_during_recovery` | Relapse resets recovery count and drops to HAZARD | **PASSED** |
 | `test_integration.py` | `test_clean_trace_end_to_end` | Honest walking trace produces clean states | **PASSED** |
 | `test_integration.py` | `test_hazard_scenario_full_lifecycle` | End-to-end multi-hazard lifecycle verification | **PASSED** |
@@ -33,5 +33,5 @@
 ## Key Proofs Demonstrated
 
 1. **Anti-Flicker Resilience**: Demonstrated that a single spurious detection does not trigger a false alert, eliminating user alarm fatigue.
-2. **Grumpy Recovery & Relapse**: Verified that the state machine never prematurely drops an alert until 5 consecutive clean windows corroborate clear space.
+2. **Recovery Hysteresis & Relapse**: Verified that the state machine never prematurely drops an alert until 5 consecutive clean windows corroborate clear space.
 3. **Deterministic Safety**: Verified that alert authority is strictly controlled by mathematical thresholding, while the on-device LLM provides conversational explanation.

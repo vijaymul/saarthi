@@ -1,6 +1,6 @@
 """
 Unit tests for the Deterministic Hazard State Machine.
-Tests state transitions, grumpy 5-window recovery rule, and instant relapse.
+Tests state transitions, 5-window recovery hysteresis rule, and instant relapse.
 """
 
 import unittest
@@ -40,8 +40,8 @@ class TestStateMachine(unittest.TestCase):
         self.assertEqual(v2.state, HazardState.RECOVERING)
         self.assertEqual(sm.clean_windows_count, 1)
 
-    def test_grumpy_recovery_requires_five_clean_windows(self):
-        """Verify full recovery requires exactly 5 consecutive clean windows."""
+    def test_recovery_hysteresis_requires_five_clean_windows(self):
+        """Verify full recovery requires exactly 5 consecutive clean windows (hysteresis)."""
         sm = HazardStateMachine()
 
         # Step 1: Trigger HAZARD

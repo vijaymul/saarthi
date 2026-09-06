@@ -37,8 +37,8 @@ def run_demo():
         print(f"  t={w.start_time:4.1f}-{w.end_time:4.1f}s | State: {v.state.value:10s} | Failed: {failed_str:20s} | {v.guidance_text}")
     print("  -> Result: 100% of windows maintained CLEAR state safely.\n")
 
-    # Scenario 2: Dynamic Street Hazard & Grumpy Recovery Progression
-    print("Scenario 2: Real-World Indian Street Hazard + Grumpy Recovery + Relapse")
+    # Scenario 2: Dynamic Street Hazard & Recovery Hysteresis Progression
+    print("Scenario 2: Real-World Indian Street Hazard + 5-Window Recovery Hysteresis + Relapse")
     print("-" * 76)
     sm2 = HazardStateMachine()
     hazard_windows = generate_hazard_scenario_trace()
