@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "saarthi-poc"
+version = "0.1.0"
+description = "Saarthi: Real-Time On-Device Hazard Detection & Fusion Proof-of-Concept for iQOO Devices"
+authors = [{ name = "Abhijeet Dubey", email = "dubeyvijay8983@gmail.com" }]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

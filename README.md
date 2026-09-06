@@ -63,19 +63,29 @@ Saarthi is an on-device accessibility system built during a 30-hour hackathon sp
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Running the Proof-of-Concept (PoC)
 
-### Running the Live Interactive Web Prototype Locally:
+### 1. Run the Python PoC Demo:
+```bash
+# Run the end-to-end multi-sensor fusion demo
+python examples/run_demo.py
+```
+
+### 2. Run the Test Suite (14 Tests, 100% Standard Library):
+```bash
+# Execute unit tests & synthetic trace validations
+python -m unittest discover tests -v
+```
+
+---
+
+## 📱 Running the Live Mobile Web Prototype Locally:
 
 ```bash
-# Clone the repository
-git clone https://github.com/vijaymul/saarthi.git
-cd saarthi
-
-# Start a local HTTP server
+# Start local HTTP server
 python -m http.server 8080
 
-# Open in your browser
+# Open in your browser (or mobile device)
 http://localhost:8080/index.html
 ```
 
