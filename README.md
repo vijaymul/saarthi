@@ -27,6 +27,7 @@
 - ✅ **Deterministic 4-State Alert Engine** with **5-window recovery hysteresis**
 - ✅ **6 Independent Sensing-Consistency Checks** (Taxonomy, Distance, Trajectory, Corridor, Persistence, Ambient)
 - ✅ **Multi-Frame Persistence Filter** eliminating single-frame detector false alarms
+- ✅ **Hands-Free "Saarthi" Voice Wake** (Zero-touch activation without unlocking or tapping the phone)
 - ✅ **Offline-First Architecture** with zero cloud round-trips
 - ✅ **Live Mobile Prototype & 2:30 Product Walkthrough** available
 
@@ -62,6 +63,16 @@ $$\text{CLEAR} \longrightarrow \text{CAUTION} \longrightarrow \text{HAZARD} \ove
 
 - **No Instant Clears**: Once a `HAZARD` is triggered, the system requires **5 consecutive clean sensing windows (hysteresis)** to return to `CLEAR`.
 - **Instant Relapse**: Any new obstacle during `RECOVERING` immediately drops back to `HAZARD` and resets the recovery window counter to 0.
+
+---
+
+## 🎙️ Hands-Free Voice Wake Activation (Zero-Touch)
+
+For visually impaired users, navigating touchscreen menus or finding an app icon is a major friction point. Saarthi features **always-on on-device voice wake** (similar to Siri or Google Assistant, but operating 100% offline):
+
+- **No Screen Unlocking Required**: Users simply call out **"Saarthi"** or **"Hey Saarthi"** to start the hazard detection pipeline.
+- **Low-Power DSP Hotword Engine**: Employs an on-device lightweight keyword spotter on the audio DSP that triggers the CameraX and NPU inference pipeline on demand.
+- **Instant Audio Feedback**: Emits a distinct startup earcon chime and immediately starts scanning the walking path.
 
 ---
 
