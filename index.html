@@ -34,6 +34,7 @@
     <!-- Mode Tabs -->
     <nav class="tab-nav-bar" aria-label="Studio Mode Navigation">
       <button class="nav-tab-btn active" data-tab="prototypeTab">📱 iQOO Live Prototype</button>
+      <button class="nav-tab-btn" data-tab="videoDemoTab">🎬 Video Demo</button>
       <button class="nav-tab-btn" data-tab="comparisonTab">⚖️ Competitive Moat</button>
       <button class="nav-tab-btn" data-tab="architectureTab">⚙️ 6-Stage Pipeline</button>
       <button class="nav-tab-btn" data-tab="sprintTab">⏱️ 30-Hour Sprint & Credits</button>
@@ -52,12 +53,12 @@
 
       <a href="https://github.com/vijaymul/saarthi" target="_blank" rel="noopener noreferrer" class="mode-pill-btn" title="View GitHub Repository" style="background: rgba(45, 212, 191, 0.15); border-color: var(--accent-teal); color: var(--accent-teal); text-decoration: none;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-        <span>GitHub Repo</span>
+        <span>GitHub</span>
       </a>
 
-      <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="mode-pill-btn yt-btn" title="Watch Demo on YouTube" style="background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.4); color: #FCA5A5; text-decoration: none;">
+      <a href="https://youtu.be/MLpM2aX246M?si=EFiSEgVJ4zKq2G_P" target="_blank" rel="noopener noreferrer" class="mode-pill-btn yt-btn" title="Watch Demo on YouTube" style="background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.4); color: #FCA5A5; text-decoration: none;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
-        <span>YouTube</span>
+        <span>YouTube Video</span>
       </a>
     </div>
   </header>
@@ -293,7 +294,41 @@
     </section>
 
     <!-- ====================================================================
-         TAB 2: COMPETITIVE MOAT (SLIDE 3 COMPARISON)
+         TAB 2: PRODUCT DEMO VIDEO (YOUTUBE EMBED)
+         ==================================================================== -->
+    <section class="tab-section" id="videoDemoTab">
+      <div class="comparison-table-wrap" style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+        <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 14px;">
+          <div>
+            <span class="iqoo-badge">PRODUCT DEMO VIDEO</span>
+            <h2 style="font-size: 1.8rem; font-weight: 800; color: #fff; margin-top: 6px;">
+              Saarthi: On-Device Hazard Detection Demo
+            </h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;">
+              Watch the full end-to-end product showcase on iQOO Devices powered by Qualcomm Snapdragon NPU.
+            </p>
+          </div>
+          <a href="https://youtu.be/MLpM2aX246M?si=EFiSEgVJ4zKq2G_P" target="_blank" rel="noopener noreferrer" class="mode-pill-btn yt-btn" style="background: rgba(239, 68, 68, 0.2); border-color: var(--accent-red); color: #fff; text-decoration: none; padding: 10px 18px; font-size: 0.88rem;">
+            <span>Open on YouTube ↗</span>
+          </a>
+        </div>
+
+        <div style="width: 100%; max-width: 1000px; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-active); box-shadow: 0 20px 50px rgba(0,0,0,0.8), var(--glow-teal);">
+          <iframe 
+            width="100%" 
+            height="100%" 
+            src="https://www.youtube-nocookie.com/embed/MLpM2aX246M" 
+            title="Saarthi Product Demo Video" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 3: COMPETITIVE MOAT (SLIDE 3 COMPARISON)
          ==================================================================== -->
     <section class="tab-section" id="comparisonTab">
       <div class="comparison-table-wrap">

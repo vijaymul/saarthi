@@ -1,11 +1,13 @@
 # Saarthi: Real-time Hazard Detection for the Visually Impaired on iQOO Devices
 
+[![YouTube Demo](https://img.shields.io/badge/YouTube-Watch%20Demo%20Video-FF0000?style=for-the-badge&logo=youtube)](https://youtu.be/MLpM2aX246M?si=EFiSEgVJ4zKq2G_P)
 [![iQOO Device AI](https://img.shields.io/badge/Device-iQOO_12-FF6600?style=for-the-badge&logo=android)](https://github.com/vijaymul/saarthi)
 [![Snapdragon NPU](https://img.shields.io/badge/NPU-Snapdragon_8_Gen_3-0070BA?style=for-the-badge&logo=qualcomm)](https://github.com/vijaymul/saarthi)
 [![100% On-Device](https://img.shields.io/badge/Privacy-100%25_On--Device-2DD4BF?style=for-the-badge)](https://github.com/vijaymul/saarthi)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
 
 > **"Awareness before contact. Your Eyes. Your Voice. Your Guide."**
+
+📺 **[Watch the Full Product Demo on YouTube](https://youtu.be/MLpM2aX246M?si=EFiSEgVJ4zKq2G_P)**
 
 Saarthi is an on-device accessibility system built during a 30-hour hackathon sprint that detects physical hazards by fusing real-time computer vision and motion sensing on iQOO devices. Designed specifically for the **70+ million visually impaired people in India**, Saarthi provides instant spatial awareness without requiring internet connectivity or cloud processing.
 
