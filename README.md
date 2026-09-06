@@ -103,9 +103,13 @@ http://localhost:8080/index.html
 
 ---
 
-## 👨‍💻 Builder & Credits
+## 👨‍💻 Builder & Team Identity
 
-- **Project**: Saarthi (Team Impact)
+- **Project**: Saarthi
+- **Team**: **Team Straw Head**
 - **Solo Builder**: **Abhijeet Dubey**
-- **Email**: [dubeyvijay8983@gmail.com](mailto:dubeyvijay8983@gmail.com)
+- **GitHub Handle**: [@vijaymul](https://github.com/vijaymul)
 - **Repository**: [https://github.com/vijaymul/saarthi](https://github.com/vijaymul/saarthi)
+- **Contact**: [dubeyvijay8983@gmail.com](mailto:dubeyvijay8983@gmail.com)
+
+> 💡 **Note for Hackathon Judges**: The official project and submission team is **Abhijeet Dubey (Solo Builder / Team Straw Head)**. The codebase is hosted under the personal GitHub profile **[@vijaymul](https://github.com/vijaymul)**.
