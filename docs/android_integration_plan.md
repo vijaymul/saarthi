@@ -32,6 +32,6 @@ This document details the hour-by-hour deployment strategy for porting the Pytho
 
 ### Phase 5: Verification & Demo Polish (Hours 24–30)
 - Benchmark real-world battery drain, thermal throttling, and inference latency.
-- Validate against 40 recorded hazard clips (auto-rickshaws, potholes, crowded markets).
+- Validate against 40 curated hazard scenarios (auto-rickshaws, potholes, crowded markets).
 - Finalize demo video and documentation.
 - **Deliverable**: Native APK deployed on iQOO 12 device ready for judging.
