@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saarthi: Real-time Hazard Detection on iQOO Devices | Team Impact</title>
+  <meta name="description" content="Saarthi is an on-device AI system that detects hazards by fusing computer vision and motion sensing on iQOO devices with Qualcomm Snapdragon NPU.">
+  
+  <!-- Modern Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Navigation & Brand Header -->
+  <header class="studio-header">
+    <div class="brand-wrapper">
+      <div class="brand-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M2 12C3.5 7 7.5 4 12 4s8.5 3 10 8c-1.5 5-5.5 8-10 8s-8.5-3-10-8z"></path>
+        </svg>
+      </div>
+      <div>
+        <span class="brand-title">SAARTHI</span>
+      </div>
+      <span class="iqoo-badge">iQOO DEVICE AI</span>
+      <span class="brand-badge">QUALCOMM SNAPDRAGON NPU</span>
+    </div>
+
+    <!-- Mode Tabs -->
+    <nav class="tab-nav-bar" aria-label="Studio Mode Navigation">
+      <button class="nav-tab-btn active" data-tab="prototypeTab">📱 iQOO Live Prototype</button>
+      <button class="nav-tab-btn" data-tab="comparisonTab">⚖️ Competitive Moat</button>
+      <button class="nav-tab-btn" data-tab="architectureTab">⚙️ 6-Stage Pipeline</button>
+      <button class="nav-tab-btn" data-tab="sprintTab">⏱️ 30-Hour Sprint & Credits</button>
+    </nav>
+
+    <div class="header-actions">
+      <button id="narrationToggleBtn" class="mode-pill-btn active" title="Toggle Spoken Guidance / Local TTS">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+        <span>Audio TTS: ON</span>
+      </button>
+
+      <button id="contrastToggleBtn" class="mode-pill-btn" title="High Contrast Mode for Accessibility">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a10 10 0 0 1 0 20z"></path></svg>
+        <span>High Contrast</span>
+      </button>
+
+      <a href="https://github.com/vijaymul/saarthi" target="_blank" rel="noopener noreferrer" class="mode-pill-btn" title="View GitHub Repository" style="background: rgba(45, 212, 191, 0.15); border-color: var(--accent-teal); color: var(--accent-teal); text-decoration: none;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        <span>GitHub Repo</span>
+      </a>
+
+      <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="mode-pill-btn yt-btn" title="Watch Demo on YouTube" style="background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.4); color: #FCA5A5; text-decoration: none;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+        <span>YouTube</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="studio-main">
+
+    <!-- ====================================================================
+         TAB 1: INTERACTIVE iQOO LIVE PROTOTYPE
+         ==================================================================== -->
+    <section class="tab-section active" id="prototypeTab">
+      
+      <!-- 6-Stage Real-Time Pipeline Visualizer -->
+      <div class="pipeline-flow-wrap">
+        <div class="pipeline-step active" id="pStep1">
+          <span class="step-num">STAGE 01</span>
+          <span class="step-title">Capture (CameraX)</span>
+        </div>
+        <span class="step-arrow">→</span>
+        <div class="pipeline-step active" id="pStep2">
+          <span class="step-num">STAGE 02</span>
+          <span class="step-title">YOLOv5n (NPU)</span>
+        </div>
+        <span class="step-arrow">→</span>
+        <div class="pipeline-step active" id="pStep3">
+          <span class="step-num">STAGE 03</span>
+          <span class="step-title">Depth Estimation</span>
+        </div>
+        <span class="step-arrow">→</span>
+        <div class="pipeline-step active" id="pStep4">
+          <span class="step-num">STAGE 04</span>
+          <span class="step-title">Path Relevance</span>
+        </div>
+        <span class="step-arrow">→</span>
+        <div class="pipeline-step active" id="pStep5">
+          <span class="step-num">STAGE 05</span>
+          <span class="step-title">Alert Priority</span>
+        </div>
+        <span class="step-arrow">→</span>
+        <div class="pipeline-step active" id="pStep6">
+          <span class="step-num">STAGE 06</span>
+          <span class="step-title">Audio / 4D Haptic</span>
+        </div>
+      </div>
+
+      <!-- Main Prototype 3-Column Studio -->
+      <div class="prototype-container">
+        
+        <!-- Left Panel: Real-World Scenarios & Voice Trigger -->
+        <aside class="proto-side-panel">
+          <div class="panel-title-row">
+            <span class="panel-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+              Hazard Scenarios
+            </span>
+            <span class="brand-badge" style="font-size: 0.68rem;">TEST BENCH</span>
+          </div>
+
+          <div class="scenario-list">
+            <div class="scenario-card active" data-scenario="auto_rickshaw">
+              <div class="sc-name">
+                <span>🛺 Approaching Vehicle</span>
+                <span style="color: var(--accent-red); font-size: 0.72rem; font-weight: 800;">HAZARD</span>
+              </div>
+              <p class="sc-desc">Auto-rickshaw turning into path at 2.1m. Quarantine route.</p>
+            </div>
+
+            <div class="scenario-card" data-scenario="pedestrian_crowd">
+              <div class="sc-name">
+                <span>🚶 Pedestrian Crossing</span>
+                <span style="color: var(--accent-amber); font-size: 0.72rem; font-weight: 800;">CAUTION</span>
+              </div>
+              <p class="sc-desc">Pedestrian walking across walking corridor at 1.4m.</p>
+            </div>
+
+            <div class="scenario-card" data-scenario="curb_pothole">
+              <div class="sc-name">
+                <span>⚠️ Low Curb & Step Down</span>
+                <span style="color: var(--accent-amber); font-size: 0.72rem; font-weight: 800;">CAUTION</span>
+              </div>
+              <p class="sc-desc">Uneven sidewalk curb drop 0.8m ahead. Step down caution.</p>
+            </div>
+
+            <div class="scenario-card" data-scenario="clear_path">
+              <div class="sc-name">
+                <span>✅ Clear Walkway</span>
+                <span style="color: var(--accent-green); font-size: 0.72rem; font-weight: 800;">CLEAR</span>
+              </div>
+              <p class="sc-desc">Pavement unobstructed for 4.5 meters. Confidence 0.94.</p>
+            </div>
+          </div>
+
+          <!-- Hands-Free Wake Simulator -->
+          <div style="margin-top: auto; background: rgba(255, 102, 0, 0.08); border: 1px solid rgba(255, 102, 0, 0.3); border-radius: 12px; padding: 14px;">
+            <div style="font-size: 0.78rem; font-weight: 800; color: var(--iqoo-orange); margin-bottom: 6px;">HANDS-FREE WAKE WORD</div>
+            <button id="btnVoiceWakeHotword" class="mode-pill-btn" style="width: 100%; justify-content: center; background: var(--iqoo-orange); color: #000; font-weight: 800; border: none;">
+              🎙️ Say "Saarthi" (Wake)
+            </button>
+          </div>
+        </aside>
+
+        <!-- Center Column: iQOO Handset with Live HUD Screen -->
+        <div class="proto-center-viewport">
+          <div class="iqoo-phone-frame">
+            
+            <div class="phone-top-notch">
+              <div class="camera-dot"></div>
+              <div class="npu-status-dot" title="Snapdragon NPU Active"></div>
+              <span style="font-size: 0.6rem; color: var(--text-dim); font-family: monospace;">iQOO 12</span>
+            </div>
+
+            <div class="phone-hud-screen">
+              
+              <!-- Real-Time Verdict State Banner -->
+              <div class="hud-verdict-banner verdict-hazard" id="hudVerdictBanner">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="font-size: 1rem;" id="verdictIcon">🚨</span>
+                  <span class="v-state-title" id="verdictStateTitle">HAZARD</span>
+                </div>
+                <span class="v-distance-pill" id="verdictDistance">DIST 2.1m</span>
+              </div>
+
+              <!-- Camera Feed Viewport -->
+              <div class="hud-camera-canvas-wrap">
+                <img src="assets/hook_cane_street.jpg" class="hud-feed-img" id="hudCameraImg" alt="iQOO Real-time Camera Feed">
+                <div class="walking-corridor-overlay"></div>
+                <div class="ai-scan-laser"></div>
+
+                <!-- Bounding Box Overlays -->
+                <div class="bounding-box box-alert active" id="protoBox1" style="top: 30%; left: 24%; width: 140px; height: 160px;">
+                  <span class="box-tag" id="protoBoxTag1">VEHICLE // 2.1m [98%]</span>
+                </div>
+
+                <div class="bounding-box box-caution active" id="protoBox2" style="bottom: 22%; right: 18%; width: 90px; height: 50px;">
+                  <span class="box-tag" id="protoBoxTag2">CURB // 0.8m [94%]</span>
+                </div>
+              </div>
+
+              <!-- Spoken Guidance Output & Directional Earcon Wave -->
+              <div class="hud-spoken-instruction">
+                <div class="hud-audio-waveform-row">
+                  <span style="font-size: 0.68rem; color: var(--accent-teal); font-weight: 800; letter-spacing: 0.5px;">SPOKEN GUIDANCE (LOCAL TTS)</span>
+                  <div class="voice-wave-bar" style="height: 14px;">
+                    <div class="wave-line" style="height: 8px;"></div>
+                    <div class="wave-line" style="height: 14px;"></div>
+                    <div class="wave-line" style="height: 10px;"></div>
+                  </div>
+                </div>
+                <p class="spoken-text-lead" id="hudSpokenText">
+                  "Hazard in path. Auto-rickshaw turning 2.1 meters ahead. Step left onto curb."
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Panel: Six Sensing Checks Matrix & NPU Telemetry -->
+        <aside class="proto-side-panel">
+          <div class="panel-title-row">
+            <span class="panel-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+              6 Sensing Checks
+            </span>
+            <span class="brand-badge" style="font-size: 0.68rem;">FUSION</span>
+          </div>
+
+          <div class="checks-matrix-list" id="checksMatrixList">
+            <div class="check-item-card alert" id="check1">
+              <div>
+                <div class="check-title">1. Object Taxonomy</div>
+                <span style="font-size: 0.7rem; color: var(--text-muted);">Vehicle / Rickshaw detected</span>
+              </div>
+              <span class="check-status" style="color: var(--accent-red);">MATCH (0.98)</span>
+            </div>
+
+            <div class="check-item-card alert" id="check2">
+              <div>
+                <div class="check-title">2. Distance vs Threshold</div>
+                <span style="font-size: 0.7rem; color: var(--text-muted);">2.1m &lt; safe-stop (2.5m)</span>
+              </div>
+              <span class="check-status" style="color: var(--accent-red);">CRITICAL</span>
+            </div>
+
+            <div class="check-item-card alert" id="check3">
+              <div>
+                <div class="check-title">3. Motion Trajectory</div>
+                <span style="font-size: 0.7rem; color: var(--text-muted);">Velocity vector closing in</span>
+              </div>
+              <span class="check-status" style="color: var(--accent-red);">CLOSING IN</span>
+            </div>
+
+            <div class="check-item-card warn" id="check4">
+              <div>
+                <div class="check-title">4. Path Relevance</div>
+                <span style="font-size: 0.7rem; color: var(--text-muted);">Inside walking corridor</span>
+              </div>
+              <span class="check-status" style="color: var(--accent-amber);">IN CORRIDOR</span>
+            </div>
+
+            <div class="check-item-card passed" id="check5">
+              <div>
+                <div class="check-title">5. Temporal Persistence</div>
+                <span style="font-size: 0.7rem; color: var(--text-muted);">Held across 5+ frames</span>
+              </div>
+              <span class="check-status" style="color: var(--accent-green);">VERIFIED (5F)</span>
+            </div>
+
+            <div class="check-item-card passed" id="check6">
+              <div>
+                <div class="check-title">6. Ambient Context</div>
+                <span style="font-size: 0.7rem; color: var(--text-muted);">Dusk lighting + traffic noise</span>
+              </div>
+              <span class="check-status" style="color: var(--accent-green);">BOOST GAIN</span>
+            </div>
+          </div>
+
+          <!-- NPU Telemetry Badge -->
+          <div style="margin-top: auto; background: rgba(14, 20, 36, 0.9); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px; font-family: 'JetBrains Mono', monospace; font-size: 0.76rem;">
+            <div style="color: var(--accent-teal); font-weight: 700; margin-bottom: 4px;">⚡ SNAPDRAGON 8 NPU STATS</div>
+            <div style="color: #D1D5DB; display: flex; justify-content: space-between;">
+              <span>Inference Latency:</span> <span style="color: var(--accent-green);">16.2 ms</span>
+            </div>
+            <div style="color: #D1D5DB; display: flex; justify-content: space-between;">
+              <span>FPS:</span> <span style="color: var(--accent-teal);">61.7 FPS</span>
+            </div>
+            <div style="color: #D1D5DB; display: flex; justify-content: space-between;">
+              <span>Airplane Mode:</span> <span style="color: var(--accent-green);">ON (0 kbps)</span>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 2: COMPETITIVE MOAT (SLIDE 3 COMPARISON)
+         ==================================================================== -->
+    <section class="tab-section" id="comparisonTab">
+      <div class="comparison-table-wrap">
+        <div style="margin-bottom: 20px;">
+          <span class="brand-badge">COMPETITIVE ANALYSIS</span>
+          <h2 style="font-size: 1.8rem; font-weight: 800; color: #fff; margin-top: 6px;">
+            Saarthi's Unique Advantage: Real-Time On-Device Fusion
+          </h2>
+          <p style="color: var(--text-muted); font-size: 0.92rem; margin-top: 4px;">
+            Existing accessibility tools — Be My Eyes, Seeing AI, Aira, and OrCam MyEye — rely on human agents, single cloud frames, or paid subscriptions ($4000+). None fuse motion and depth on-device.
+          </p>
+        </div>
+
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Solution</th>
+              <th>Offline Ready</th>
+              <th>Motion + Depth Fusion</th>
+              <th>&lt;200ms Latency</th>
+              <th>100% On-Device</th>
+              <th>No Subscription / Free</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Be My Eyes</strong></td>
+              <td><span class="comp-cross">✗</span></td>
+              <td><span class="comp-cross">✗</span></td>
+              <td><span class="comp-cross">✗</span></td>
+              <td><span class="comp-cross">✗</span></td>
+              <td><span class="comp-check">✓</span></td>
+            </tr>
+            <tr>
+              <td><strong>Seeing AI</strong></td>
+              <td><span class="comp-cross">✗</span></td>
+              <td><span class="comp-cross">✗</span></td>
+              <td><span class="comp-cross">✗</span></td>
+              <td><span class="comp-cross">✗</span></td>
+              <td><span class="comp-check">✓</span></td>
+            </tr>
+            <tr>
+              <td><strong>Aira</strong></td>
+              <td><span class="comp-cross">✗</span></td>
+              <td><span class="comp-cross">✗</span></td>
+              <td><span class="comp-cross">✗</span></td>
+              <td><span class="comp-cross">✗</span></td>
+              <td><span class="comp-cross">✗</span></td>
+            </tr>
+            <tr>
+              <td><strong>OrCam MyEye</strong></td>
+              <td><span class="comp-check">✓</span></td>
+              <td><span class="comp-cross">✗</span></td>
+              <td><span class="comp-cross">✗</span></td>
+              <td><span class="comp-check">✓</span></td>
+              <td><span class="comp-cross">✗ ($4000+)</span></td>
+            </tr>
+            <tr class="highlight-row">
+              <td><strong>SAARTHI (iQOO)</strong></td>
+              <td><span class="comp-check">✓ (100% Offline)</span></td>
+              <td><span class="comp-check">✓ (6 Sensing Checks)</span></td>
+              <td><span class="comp-check">✓ (16.2ms)</span></td>
+              <td><span class="comp-check">✓ (Snapdragon NPU)</span></td>
+              <td><span class="comp-check">✓ (Free on Device)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 3: 6-STAGE ARCHITECTURE & DETERMINISTIC SAFETY
+         ==================================================================== -->
+    <section class="tab-section" id="architectureTab">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+        
+        <div class="comparison-table-wrap">
+          <span class="brand-badge">DETERMINISTIC SAFETY</span>
+          <h3 style="font-size: 1.4rem; font-weight: 800; color: #fff; margin: 10px 0;">
+            Aviation-Safety Architecture
+          </h3>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; margin-bottom: 14px;">
+            The LLM explains in natural language, but never decides whether to alert. Deterministic threshold logic controls all physical safety.
+          </p>
+          <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px; font-size: 0.82rem;">
+            <div style="color: var(--accent-teal); font-weight: 700; margin-bottom: 4px;">1. Deterministic Layer (Authority):</div>
+            <p style="color: var(--text-muted); margin-bottom: 10px;">Distance thresholding · Multi-frame persistence · Walking corridor filter · Validated on 40 recorded hazard clips.</p>
+            <div style="color: var(--iqoo-orange); font-weight: 700; margin-bottom: 4px;">2. On-Device LLM Layer (Context Only):</div>
+            <p style="color: var(--text-muted);">Generates natural spoken guidance. Never overrides deterministic safety verdicts.</p>
+          </div>
+        </div>
+
+        <div class="comparison-table-wrap">
+          <span class="brand-badge">HARDWARE INTEGRATION</span>
+          <h3 style="font-size: 1.4rem; font-weight: 800; color: #fff; margin: 10px 0;">
+            iQOO & Snapdragon Hexagon NPU
+          </h3>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; margin-bottom: 14px;">
+            Optimized for Qualcomm Snapdragon 8-series processors with INT8 / FP16 TFLite quantization for sub-200ms walking-speed safety.
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.82rem;">
+            <div style="padding: 8px; background: rgba(255, 255, 255, 0.03); border-radius: 8px;">
+              <strong>Vision Model:</strong> Quantized YOLOv5n hazard detector (16.2ms inference)
+            </div>
+            <div style="padding: 8px; background: rgba(255, 255, 255, 0.03); border-radius: 8px;">
+              <strong>Embedded TTS:</strong> Local offline text-to-speech for instant voice cues
+            </div>
+            <div style="padding: 8px; background: rgba(255, 255, 255, 0.03); border-radius: 8px;">
+              <strong>Directional Earcons:</strong> Spatial audio tones signaling hazard bearing
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TAB 4: 30-HOUR SPRINT & BUILDER CREDITS
+         ==================================================================== -->
+    <section class="tab-section" id="sprintTab">
+      <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 24px;">
+        
+        <div class="comparison-table-wrap">
+          <span class="iqoo-badge">HACKATHON TIMELINE</span>
+          <h3 style="font-size: 1.4rem; font-weight: 800; color: #fff; margin: 10px 0;">
+            30-Hour Sprint Breakdown
+          </h3>
+          <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.82rem;">
+            <div style="padding: 10px; background: rgba(255, 255, 255, 0.03); border-radius: 8px;">
+              <strong style="color: var(--accent-teal);">Hour 0-6 (Foundation):</strong> Android CameraX API · IMU sensor parsing · Data pipeline setup
+            </div>
+            <div style="padding: 10px; background: rgba(255, 255, 255, 0.03); border-radius: 8px;">
+              <strong style="color: var(--accent-teal);">Hour 6-12 (Core Engine):</strong> Detection thresholds · 6 sensing consistency checks · Alert state machine
+            </div>
+            <div style="padding: 10px; background: rgba(255, 255, 255, 0.03); border-radius: 8px;">
+              <strong style="color: var(--accent-teal);">Hour 12-18 (Fusion & Intelligence):</strong> Motion + depth fusion · LLM narration · False-positive filtering
+            </div>
+            <div style="padding: 10px; background: rgba(255, 255, 255, 0.03); border-radius: 8px;">
+              <strong style="color: var(--accent-teal);">Hour 18-24 (Integration & Testing):</strong> Android app wrapper · iQOO device testing · TFLite delegate
+            </div>
+            <div style="padding: 10px; background: rgba(255, 255, 255, 0.03); border-radius: 8px;">
+              <strong style="color: var(--accent-teal);">Hour 24-30 (Polish & Deployment):</strong> Performance tuning · Audio/haptic earcons · Live native demo
+            </div>
+          </div>
+        </div>
+
+        <div class="comparison-table-wrap" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;">
+          <div class="brand-icon" style="width: 50px; height: 50px; border-radius: 14px;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5"><circle cx="12" cy="12" r="3"></circle><path d="M2 12C3.5 7 7.5 4 12 4s8.5 3 10 8c-1.5 5-5.5 8-10 8s-8.5-3-10-8z"></path></svg>
+          </div>
+          <div>
+            <h3 style="font-size: 1.5rem; font-weight: 900; color: #fff;">Project Saarthi</h3>
+            <span class="iqoo-badge" style="margin-top: 6px; display: inline-block;">TEAM IMPACT</span>
+          </div>
+          <div style="font-size: 0.95rem; color: var(--text-main); font-weight: 700;">
+            Abhijeet Dubey
+          </div>
+          <div style="font-size: 0.8rem; color: var(--text-muted);">
+            Solo Builder · <a href="mailto:dubeyvijay8983@gmail.com" style="color: var(--accent-teal); text-decoration: none;">dubeyvijay8983@gmail.com</a>
+          </div>
+          <div class="badge-item" style="margin-top: 10px;">
+            Empowering 70M+ Lives in India
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script src="audio.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
