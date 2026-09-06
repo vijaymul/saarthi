@@ -16,12 +16,13 @@ This document specifies the real-time sensor processing pipeline for **Saarthi o
 
 ---
 
-## 2. On-Device NPU Acceleration
+## 2. On-Device NPU Acceleration (Phase 2 Target Specification)
 
-- **Model**: Custom Quantized `YOLOv5n-INT8` (1.9M parameters, 4.2 MB size).
-- **Inference Runtime**: TensorFlow Lite with `TFLite-Hexagon-Delegate` targeting the Qualcomm Snapdragon NPU.
-- **Inference Latency**: **16.2 ms** (61.7 FPS peak throughput).
-- **Thermal Overhead**: &lt;+0.4°C over a 30-minute continuous run.
+- **Target Device**: iQOO 12 (Qualcomm Snapdragon 8 Gen 3)
+- **Model**: Quantized `YOLOv5n-INT8` (1.9M parameters, 4.2 MB size).
+- **Inference Runtime**: TensorFlow Lite with `TFLite-Hexagon-Delegate` targeting the Snapdragon Hexagon NPU.
+- **Target Inference Latency**: **~16.2 ms** (up to 60 FPS throughput).
+- **Thermal Budget**: <+0.5°C over 30-minute run.
 - **RAM Footprint**: ~138 MB peak resident memory.
 
 ---
